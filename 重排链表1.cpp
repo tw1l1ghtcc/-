@@ -6,7 +6,7 @@ typedef struct Node {
 	int data;
 	string next;
 	string addr;
-}Node;//´´½¨Á´±í
+}Node;//åˆ›å»ºé“¾è¡¨
 int change(string add) {
 	int sum = 0;
 	if (add == "-1") {
@@ -16,7 +16,7 @@ int change(string add) {
 		sum = sum * 10 + (add[i] - '0');
 	}
 	return sum;
-}//µØÖ·×ª»»º¯Êı
+}//åœ°å€è½¬æ¢å‡½æ•°
 void traverse(Node* L, string Iniadd, int n) {
 	int curraddr = change(Iniadd);
 	static int order[100000];
@@ -28,10 +28,10 @@ void traverse(Node* L, string Iniadd, int n) {
 	int left = 0, right = len - 1;
 	bool takeRight = true;
 	int prevaddr = -1;
-	while (left <= right) {//Ë«Ö¸ÕëÖØÅÅÁ´±í
+	while (left <= right) {//åŒæŒ‡é’ˆé‡æ’é“¾è¡¨
 		int curr;
 		if (takeRight) {
-			curr = order[right--];//ÏÈÈ¡ÓÒ±ß
+			curr = order[right--];//å…ˆå–å³è¾¹
 		}
 		else {
 			curr = order[left++];
@@ -42,14 +42,12 @@ void traverse(Node* L, string Iniadd, int n) {
 		prevaddr = curr;
 		takeRight = !takeRight;
 	}
-	L[prevaddr].next = "-1";//ÉèÖÃ×îºóÒ»¸ö½ÚµãÖ¸Ïò-1
+	L[prevaddr].next = "-1";//è®¾ç½®æœ€åä¸€ä¸ªèŠ‚ç‚¹æŒ‡å‘-1
 	int add = order[len - 1];
 	for (int i = 0; i < len; i++) {
 		cout << L[add].addr << " " << L[add].data << " " << L[add].next << endl;
 		add = change(L[add].next);
 	}
-
-
 }
 int main() {
 	static Node L[100000];
@@ -68,4 +66,5 @@ int main() {
 
 
 	return 0;
+
 }
