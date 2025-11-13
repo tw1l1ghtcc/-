@@ -63,8 +63,6 @@ int main() {
 		L[change(add)].addr = add;
 	}
 	traverse(L, Iniadd, n);
-
-
 	return 0;
-
 }
+
