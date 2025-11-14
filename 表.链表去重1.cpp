@@ -19,55 +19,55 @@ int change(string a) {
 }
 void unique(Node* L, string Iniadd, int n, int* store, int& sum) {
 	int add = change(Iniadd);
-	if (add == -1 || add >= 100010 || add < 0) { // ³õÊ¼µØÖ·ÎŞĞ§Ö±½Ó·µ»Ø
+	if (add == -1 || add >= 100010 || add < 0) { // åˆå§‹åœ°å€æ— æ•ˆç›´æ¥è¿”å›
 		sum = 0;
 		return;
 	}
 	sum = 0;
-	bool seen[10001] = { false }; // ¼üÖµ¾ø¶ÔÖµ¡Ü1e4£¬±ê¼ÇÒÑ³öÏÖµÄ¾ø¶ÔÖµ
+	bool seen[10001] = { false }; // é”®å€¼ç»å¯¹å€¼â‰¤1e4ï¼Œæ ‡è®°å·²å‡ºç°çš„ç»å¯¹å€¼
 
-	while (add != -1 && add < 100010) { // ±éÀúËùÓĞÓĞĞ§½Úµã£¨°üÀ¨Î²½Úµã£©
+	while (add != -1 && add < 100010) { // éå†æ‰€æœ‰æœ‰æ•ˆèŠ‚ç‚¹ï¼ˆåŒ…æ‹¬å°¾èŠ‚ç‚¹ï¼‰
 		int dat_abs = abs(L[add].data);
 		if (!seen[dat_abs]) {
-			seen[dat_abs] = true; // ±ê¼ÇµÚÒ»¸ö³öÏÖµÄ¾ø¶ÔÖµ
-			// ÒÆ¶¯µ½ÏÂÒ»¸ö½Úµã£¨×÷ÎªĞÂ»ù×¼£©
+			seen[dat_abs] = true; // æ ‡è®°ç¬¬ä¸€ä¸ªå‡ºç°çš„ç»å¯¹å€¼
+			// ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼ˆä½œä¸ºæ–°åŸºå‡†ï¼‰
 			int next_add = change(L[add].next);
 			if (next_add == -1) break;
 			add = next_add;
 		}
 		else {
-			// ÖØ¸´½Úµã£º¼ÇÂ¼²¢É¾³ı
+			// é‡å¤èŠ‚ç‚¹ï¼šè®°å½•å¹¶åˆ é™¤
 			store[sum++] = add;
-			// ÕÒµ½Ç°Çı½Úµã£¬ĞŞ¸ÄÆänext£¨¹Ø¼ü£ºÉ¾³ıµ±Ç°ÖØ¸´½Úµã£©
+			// æ‰¾åˆ°å‰é©±èŠ‚ç‚¹ï¼Œä¿®æ”¹å…¶nextï¼ˆå…³é”®ï¼šåˆ é™¤å½“å‰é‡å¤èŠ‚ç‚¹ï¼‰
 			int prev = change(Iniadd);
 			while (prev != -1 && prev < 100010) {
 				int prev_next = change(L[prev].next);
-				if (prev_next == add) { // ÕÒµ½Ç°Çı½Úµã
-					L[prev].next = L[add].next; // Ìø¹ıµ±Ç°ÖØ¸´½Úµã
+				if (prev_next == add) { // æ‰¾åˆ°å‰é©±èŠ‚ç‚¹
+					L[prev].next = L[add].next; // è·³è¿‡å½“å‰é‡å¤èŠ‚ç‚¹
 					break;
 				}
 				prev = prev_next;
 			}
-			// ÒÆ¶¯µ½ÏÂÒ»¸ö½Úµã£¨¼ÌĞø¼ì²éÖØ¸´£©
+			// ç§»åŠ¨åˆ°ä¸‹ä¸€ä¸ªèŠ‚ç‚¹ï¼ˆç»§ç»­æ£€æŸ¥é‡å¤ï¼‰
 			add = change(L[add].next);
 		}
 	}
 }
 
 void traverseDeleted(Node* L, int* store, int sum) {
-	// ÖØ¹¹Á´½Ó£ºÖğ¸öÉèÖÃÉÏÒ»¸ö½ÚµãµÄnextÎªÏÂÒ»¸ö½ÚµãµÄaddr
+	// é‡æ„é“¾æ¥ï¼šé€ä¸ªè®¾ç½®ä¸Šä¸€ä¸ªèŠ‚ç‚¹çš„nextä¸ºä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„addr
 	for (int i = 0; i < sum; i++) {
 		int curr_idx = store[i];
-		// ²»ÊÇ×îºóÒ»¸ö½Úµã£ºnext = ÏÂÒ»¸ö±»É¾³ı½ÚµãµÄaddr
+		// ä¸æ˜¯æœ€åä¸€ä¸ªèŠ‚ç‚¹ï¼šnext = ä¸‹ä¸€ä¸ªè¢«åˆ é™¤èŠ‚ç‚¹çš„addr
 		if (i < sum - 1) {
 			int next_idx = store[i + 1];
 			L[curr_idx].next = L[next_idx].addr;
 		}
 		else {
-			// ×îºóÒ»¸ö½Úµã£ºnext = "-1"
+			// æœ€åä¸€ä¸ªèŠ‚ç‚¹ï¼šnext = "-1"
 			L[curr_idx].next = "-1";
 		}
-		// Êä³öµ±Ç°½Úµã£¨ÒÑÖØ¹¹Á´½Ó£©
+		// è¾“å‡ºå½“å‰èŠ‚ç‚¹ï¼ˆå·²é‡æ„é“¾æ¥ï¼‰
 		cout << L[curr_idx].addr << " " << L[curr_idx].data << " " << L[curr_idx].next << endl;
 	}
 }
