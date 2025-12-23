@@ -78,7 +78,7 @@ int main() {
 		}
 		long long len = r - l + 1;
 		int k = lowerbound(diff, m, len);
-		long long ans = prefix[k] + (long long)(n - 1) * len;
+		long long ans = prefix[k] + (long long)(n - k) * len;
 		cout << ans;
 		if (q > 0) {
 			cout << " ";
@@ -86,4 +86,5 @@ int main() {
 	}
 
 	return 0;
+
 }
