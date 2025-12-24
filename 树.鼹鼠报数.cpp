@@ -1,8 +1,5 @@
 #include<iostream>
 using namespace std;
-int change(char c) {
-	return c - '0';
-}
 typedef struct Node {
 	int data;
 	struct Node* left;
