@@ -52,7 +52,7 @@ void dijkstra(int n, int t) {
 		}
 	}
 }
-void count(long long* dp, long long* order,int n,int t) {
+void countPaths(long long* dp, long long* order,int n,int t) {
 	for (int i = 1; i <= n; i++) {
 		dp[i] = 0;
 		order[i] = i;
@@ -90,9 +90,10 @@ int main() {
 	long long dp[1005];
 	long long order[1005];
 	dijkstra(n, t);
-	count(dp, order, n, t);
+	countPaths(dp, order, n, t);
 	cout << (dp[s] == 0 ? -1 : dp[s]);
 	return 0;
 
 }
+
 
