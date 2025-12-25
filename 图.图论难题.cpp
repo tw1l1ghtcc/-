@@ -4,6 +4,8 @@ int map[1005][1005];
 int MAX = 1e9;
 long long dis[1005];
 bool vis[1005];
+long long dp[1005];
+long long order[1005];
 void creatMap(int n, int m) {
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= n; j++) {
@@ -87,13 +89,12 @@ int main() {
 	creatMap(n, m);
 	int s, t;
 	cin >> s >> t;
-	long long dp[1005];
-	long long order[1005];
 	dijkstra(n, t);
 	countPaths(dp, order, n, t);
 	cout << (dp[s] == 0 ? -1 : dp[s]);
 	return 0;
 
 }
+
 
 
