@@ -17,9 +17,9 @@ void creatMap(int n, int m) {
 	}
 	for (int i = 0; i < m; i++) {
 		int a, b;
-		int dis;
+		int dist;
 		cin >> a >> b >> dis;
-		map[a][b] = map[b][a] = dis;
+		map[a][b] = map[b][a] = dist;
 	}
 	return;
 }
@@ -93,4 +93,5 @@ int main() {
 	count(dp, order, n, t);
 	cout << (dp[s] == 0 ? -1 : dp[s]);
 	return 0;
+
 }
