@@ -1,44 +1,39 @@
 #include <iostream>
 using namespace std;
-
+const int MAX_QUEUE = 200000; // ÈòüÂàóË∂≥Â§üÂ§ß
+int pigs[MAX_QUEUE];
+int qsize = 0;
+const int MAX_LUCKY = 3000;
+int lucky[MAX_LUCKY];
 int main() {
     int T;
     cin >> T;
     int queries[305];
-    for (int i = 0; i < T; i++) cin >> queries[i];
-
-    const int MAX_QUEUE = 200000; // ∂”¡–◊„πª¥Û
-    int pigs[MAX_QUEUE];
-    int qsize = 0;
-
-    // ≥ı ºªØ∂”¡–
-    for (int i = 2; i <= MAX_QUEUE; i++) pigs[qsize++] = i;
-
-    const int MAX_LUCKY = 3000;
-    int lucky[MAX_LUCKY];
+    for (int i = 0; i < T; i++) {
+        cin >> queries[i];
+    }
+    for (int i = 2; i <= MAX_QUEUE; i++) {
+        pigs[qsize++] = i;
+    }
     int count = 0;
-
-    int head = 0; // ∂” ◊À˜“˝
-
+    int head = 0; // ÈòüÈ¶ñÁ¥¢Âºï
     while (count < MAX_LUCKY) {
-        int val = pigs[head];       // ∂” ◊–°÷Ì
+        int val = pigs[head];       // ÈòüÈ¶ñÂ∞èÁå™
         lucky[count++] = val;
 
-        // ‘≠µÿ…æ≥˝∂” ◊÷Æ∫Û√ø∏Ù val ∏ˆ–°÷Ì
-        int index = head + 1;       // –¬∂”¡––¥»ÎŒª÷√
+        // ÂéüÂú∞Âà†Èô§ÈòüÈ¶ñ‰πãÂêéÊØèÈöî val ‰∏™Â∞èÁå™
+        int index = head + 1;       // Êñ∞ÈòüÂàóÂÜôÂÖ•‰ΩçÁΩÆ
         for (int i = head + 1; i < qsize; i++) {
             if ((i - head) % val != 0) {
                 pigs[index++] = pigs[i];
             }
         }
-        qsize = index;              // ∏¸–¬∂”¡–≥§∂»
-        head++;                     // ∂” ◊≥ˆ∂”
+        qsize = index;              // Êõ¥Êñ∞ÈòüÂàóÈïøÂ∫¶
+        head++;                     // ÈòüÈ¶ñÂá∫Èòü
     }
-
-    //  ‰≥ˆ≤È—ØΩ·π˚
+    // ËæìÂá∫Êü•ËØ¢ÁªìÊûú
     for (int i = 0; i < T; i++) {
         cout << lucky[queries[i] - 1] << endl;
     }
-
     return 0;
 }
