@@ -18,7 +18,7 @@ void creatMap(int n, int m) {
 	for (int i = 0; i < m; i++) {
 		int a, b;
 		int dist;
-		cin >> a >> b >> dis;
+		cin >> a >> b >> dist;
 		map[a][b] = map[b][a] = dist;
 	}
 	return;
@@ -95,3 +95,4 @@ int main() {
 	return 0;
 
 }
+
