@@ -62,7 +62,8 @@ int main() {
     int a[100000];
     for (int i = 0; i < N; ++i) cin >> a[i];
 
-    cout << calcMaxValue(a, N) << "\n";
+    cout << calcMaxValue(a, N) << endl ;
     return 0;
 }
+
 
